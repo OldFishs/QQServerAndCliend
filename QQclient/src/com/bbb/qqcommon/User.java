@@ -1,28 +1,28 @@
-package QQclientview.QQcommon;
+package com.bbb.qqcommon;
 
 import java.io.Serializable;
 
+//表示用户信息
 public class User implements Serializable {
-
-    public static final long serialVersionUID = 1L;
-    private String userid;
+    private static final long serialVersionUID = 1L;
+    private String userId;
     private String password;
 
     public User() {
 
     }
 
-    public User(String password, String userid) {
+    public User(String userId, String password)  {
+        this.userId = userId;
         this.password = password;
-        this.userid = userid;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
