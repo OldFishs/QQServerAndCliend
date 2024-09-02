@@ -65,6 +65,10 @@ public class QQview {
 
                                     break;
                                 case "0":
+                                    //调用方法退出
+                                    //--------------
+                                    ucs.logout();
+                                    //---------------
                                     loop = false;
                                     break;
                             }

@@ -73,4 +73,23 @@ public class UserClientService {
         }
 
     }
+
+    //退出客户端 发送message给服务端退出
+    public void logout(){
+        Messsge ms = new Messsge();
+        ms.setMestype(MessageType.MESSAGE_CLIENT_EXIT);
+        ms.setSender(u.getUserId());
+
+        //发送
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream
+                    (ManageClientConnectServerThread.getClientConnectServerThread
+                            (u.getUserId()).getSocket().getOutputStream());
+            oos.writeObject(ms);
+            System.out.println(u.getUserId() + "退出");
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

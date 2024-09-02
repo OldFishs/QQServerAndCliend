@@ -26,7 +26,10 @@ public class ManagelientThreads {
             s += iterator.next().toString() + " ";
         }
         return s;
+    }
 
-
+    //移除
+    public static void removeClientThread(String s){
+        hm.remove(s);
     }
 }
