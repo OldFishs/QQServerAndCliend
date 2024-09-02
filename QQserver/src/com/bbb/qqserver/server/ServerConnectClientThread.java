@@ -18,6 +18,10 @@ public class ServerConnectClientThread extends Thread{
         this.useid = useid;
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
+
     @Override
     public void run(){
         //线程运行
@@ -44,19 +48,27 @@ public class ServerConnectClientThread extends Thread{
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                     oos.writeObject(ms1);
 
-//--------------------------
+                }else if(ms.getMestype().equals(MessageType.MESSAGE_COMM_MES)){
+                    //获取getterid，得到对应线程
+                    ServerConnectClientThread scct = ManagelientThreads.getServerConnectClientThread(ms.getGetter());
+                    //得到对应输出流， 输出给客户端
+                    ObjectOutputStream oos = new ObjectOutputStream(scct.getSocket().getOutputStream());
+                    oos.writeObject(ms);
+                    //如果不在线 保存到数据库
+
                 }else if(ms.getMestype().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(ms.getSender() + "退出");
                     ManagelientThreads.removeClientThread(ms.getSender());
                     socket.close();
                     break;
 
-                    //-------------------------
                 }else{
                     System.out.println("其他");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+
+
             }
         }
 

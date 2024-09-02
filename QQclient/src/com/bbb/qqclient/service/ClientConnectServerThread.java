@@ -31,7 +31,7 @@ public class ClientConnectServerThread extends Thread {
 
                 //不断运行，接收服务器端发回的消息
                 //判断message类型，相应处理
-                if(ms.getMestype().equals(MessageType.MESSAGE_RET_ONLINEFRIEND)){
+                if(ms.getMestype().equals(MessageType.MESSAGE_RET_ONLINEFRIEND)){//显示列表
 
                     //取出在线列表 显示
                     String[] onlineFriend = ms.getContent().split(" ");
@@ -39,13 +39,19 @@ public class ClientConnectServerThread extends Thread {
                     for(int i = 0 ; i < onlineFriend.length ; i++){
                         System.out.println("用户:" + onlineFriend[i]);
                     }
-                }else{
+                }else if(ms.getMestype().equals(MessageType.MESSAGE_COMM_MES)){//普通聊天
+                    System.out.println("\n\t" + ms.getSender() + "对我说:" + ms.getContent());
+
+                }
+
+
+                else{
                     System.out.println("其他");
                 }
 
 
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }

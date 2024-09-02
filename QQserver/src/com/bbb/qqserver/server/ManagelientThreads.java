@@ -13,7 +13,7 @@ public class ManagelientThreads {
     }
 
     //根据userid返回serverconnerctclientthread线程
-    public static ServerConnectClientThread getServerConnectClientThread(String s,ServerConnectClientThread c){
+    public static ServerConnectClientThread getServerConnectClientThread(String s){
         return hm.get(s);
     }
 

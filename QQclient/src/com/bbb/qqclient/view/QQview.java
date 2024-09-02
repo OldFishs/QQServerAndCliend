@@ -1,5 +1,6 @@
 package com.bbb.qqclient.view;
 
+import com.bbb.qqclient.service.MessageClientService;
 import com.bbb.qqclient.service.UserClientService;
 import com.bbb.qqclient.utils.Utility;
 
@@ -9,7 +10,8 @@ public class QQview {
 
     private boolean loop = true;
     private String key = "";
-    private UserClientService ucs = new UserClientService();
+    private UserClientService ucs = new UserClientService();//用于登录注册
+    private MessageClientService mcs = new MessageClientService();//用于对象消息发送
     //显示主菜单
 
     public static void main(String[] args){
@@ -57,8 +59,12 @@ public class QQview {
 
                                     break;
                                 case "3":
-                                    System.out.println("\t\t 3 私发消息");
+                                    System.out.print("请输入想聊天的用户(在线)：");
+                                    String getterid = Utility.readString(50);
+                                    System.out.print("请输入想说的话：");
+                                    String content = Utility.readString(100);
 
+                                    mcs.sendMessage(content,useid,getterid);
                                     break;
                                 case "4":
                                     System.out.println("\t\t 4 发送文件");
