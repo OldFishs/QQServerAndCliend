@@ -3,6 +3,8 @@ package com.bbb.qqclient.service;
 import com.bbb.qqcommon.MessageType;
 import com.bbb.qqcommon.Messsge;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
@@ -42,10 +44,18 @@ public class ClientConnectServerThread extends Thread {
                 }else if(ms.getMestype().equals(MessageType.MESSAGE_COMM_MES)){//普通聊天
                     System.out.println("\n\t" + ms.getSender() + "对我说:" + ms.getContent());
 
-                }
+                }else if(ms.getMestype().equals(MessageType.MESSAGE_ALL_MES)){//群聊
+                    System.out.println("\n\t" + ms.getSender() + "对大家说:" + ms.getContent());
 
+                }else if(ms.getMestype().equals(MessageType.MESSAGE_FILE_MES)){//文件
+                    System.out.println("\n\t" + ms.getSender() + "给" + ms.getGetter() + "发文件到：" + ms.getDest());
+                    //取出字节数组，写出磁盘
+                    FileOutputStream fis = new FileOutputStream(ms.getDest());
+                    fis.write(ms.getFilebyte());
+                    fis.close();
+                    System.out.println("\n保存文件成功，，");
 
-                else{
+                } else{
                     System.out.println("其他");
                 }
 

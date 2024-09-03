@@ -30,4 +30,25 @@ public class MessageClientService {
         }
 
     }
+
+
+    //群聊
+    public void allsendMessage(String msg, String senderid){
+        Messsge ms = new Messsge();
+        ms.setMestype(MessageType.MESSAGE_ALL_MES);
+        ms.setSender(senderid);
+        ms.setContent(msg);
+        ms.setSendtime(new Date().toString());
+        System.out.println("我对大家说" + msg);
+
+        //发送给服务端
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream
+                    (ManageClientConnectServerThread.getClientConnectServerThread
+                            (senderid).getSocket().getOutputStream());
+            oos.writeObject(ms);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

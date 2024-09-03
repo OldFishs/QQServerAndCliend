@@ -7,5 +7,7 @@ public interface MessageType {
     String  MESSAGE_GET_ONLINEFRIEND = "4";
     String  MESSAGE_RET_ONLINEFRIEND = "5";
     String  MESSAGE_CLIENT_EXIT = "6";
+    String MESSAGE_ALL_MES = "7";
+    String  MESSAGE_FILE_MES = "8";
 
 }

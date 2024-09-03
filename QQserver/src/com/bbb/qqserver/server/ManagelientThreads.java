@@ -12,6 +12,10 @@ public class ManagelientThreads {
         hm.put(s,c);
     }
 
+    public static HashMap<String, ServerConnectClientThread> getHm() {
+        return hm;
+    }
+
     //根据userid返回serverconnerctclientthread线程
     public static ServerConnectClientThread getServerConnectClientThread(String s){
         return hm.get(s);
