@@ -22,8 +22,8 @@ public class QQserver {
 
     static{//在静态代码块初始化
         vaildusers.put("100",new User("100","123456"));
-        vaildusers.put("200",new User("200","13579"));
-        vaildusers.put("300",new User("300","24680"));
+        vaildusers.put("200",new User("200","123456"));
+        vaildusers.put("300",new User("300","123456"));
 
     }
 
@@ -43,6 +43,7 @@ public class QQserver {
     public QQserver() {
         try {
             System.out.println("在端口9999监听，，，");
+            new Thread(new SendNewsToAllService()).start();
             ss = new ServerSocket(9999);
 
             while(true){
